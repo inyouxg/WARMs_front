@@ -1,0 +1,29 @@
+.background-container {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../assets/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.img-wrapper{
+  min-height: 100vh; /*없을 경우 뷰포트가 작아질 때 이미지 세로 중앙 정렬이 안 됨*/
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img-wrapper .img {
+  width: 900px;
+}
+.click {
+  position: absolute;
+  transform: translateY(200%) translateX(-70%);
+  width: 350px;
+  height: 100px;
+  background-color: #675346;
+  color: white;
+  font-size: 35px;
+  font-weight: 900;
+  border-radius: 30px;
+}
