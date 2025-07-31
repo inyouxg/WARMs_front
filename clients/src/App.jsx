@@ -1,7 +1,9 @@
-import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Title from './pages/Title'
+import Home from './pages/Home'
+import DiaryWriting from './pages/DiaryWriting'
+import './App.css'
 
 function App() {
   return (
@@ -9,7 +11,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Title />} />
-        <Route path="" />
+        <Route path="/home" element={<Home />}/>
+        <Route path='/home/writing' element={<DiaryWriting/>} />
       </Routes>
     </>
 
