@@ -8,7 +8,7 @@ function Header() {
   return(
     <div className="header-background">
       <div className='header-container'>
-        <div className="title">WARMs</div>
+        <div className="header-title">WARMs</div>
         <button className="logout">로그아웃</button>
       </div>
     </div>
