@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import JoinModal from './JoinModal';
 import close from '../assets/close.svg'
 import './LoginModal.css'
 
@@ -5,11 +7,8 @@ function LoginModal({onClose}){
   const handleSubmit = (e) => {
     e.preventDefault(); // 새로고침 방지
     console.log("로그인 시도!");
-
-    const onClose = () => {
-
-    }
   };
+  const [joinModal, setJoinModal] = useState(false);
 
   return(
     <div className="modal-container">
@@ -27,7 +26,12 @@ function LoginModal({onClose}){
           </div>
           <button type="submit" className='submit-button'>로그인</button>
         </form>
-        <button className='join-button'>회원가입하러 가기!</button>
+        <button className='join-button'
+          onClick={() => setJoinModal(true)}
+          >회원가입하러 가기!</button>
+          {joinModal &&
+            <JoinModal onClose={onClose}/>
+          }
       </div>
     </div>
   )
