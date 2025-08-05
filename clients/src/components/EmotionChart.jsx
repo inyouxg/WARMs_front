@@ -1,4 +1,5 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
+import diary from "../mock/diary.json"
 
 const RADIAN = Math.PI / 180;
 const COLORS = ['#81abcfff', '#ffe89bff', '#cb6161ff', '#8b66bbff', '#c5c5c5ff'];
@@ -22,7 +23,7 @@ export default function EmotionPieChart({ probabilities }) {
   }));
 
   return (
-    <ResponsiveContainer width={300} height={300}>
+    <ResponsiveContainer key={diary.id} width={280} height={280}>
       <PieChart>
         <Pie
           data={data}
