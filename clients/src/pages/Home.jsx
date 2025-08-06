@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Calendar from '../components/MyCalendar'
 import EmotionModal from "../modal/EmotionModal"
 import StoryModal from "../modal/StoryModal"
@@ -10,6 +11,8 @@ import './Home.css'
 function Home(){
   const [emotionModal,setEmotionModal] = useState(false);
   const [storyModal,setStoryModal] = useState(false);
+
+  let navigate = useNavigate();
 
   const onClose = () => {
     setEmotionModal(false);
@@ -30,7 +33,7 @@ function Home(){
           {storyModal &&
             <StoryModal onClose={onClose}/>}
           <span>일기 쓰러 가기!</span>
-          <button><img src={today}/></button>
+          <button onClick={() => navigate("/home/writing")}><img src={today} /></button>
         </div>
       </div>
       <Calendar/>

@@ -36,13 +36,13 @@
 }
 .modal-wrapper .title .left-arrow {
   position: absolute;
-  left: 30%;
-  top: 12%; 
+  left: 35%;
+  top: 8.5%; 
 }
 .modal-wrapper .title .right-arrow {
   position: absolute;
-  right: 30%;
-  top: 12%;
+  right: 35%;
+  top: 8.5%;
 }
 .sketchbook {
   display: flex;

@@ -7,7 +7,7 @@ function EmotionReport() {
   const today = diary[0].created_at.slice(0, 10).split("-");
 
   return(
-    <div className="background-container">
+    <div className="emotion-background-container">
       <div className="report-container">
         <div className="title">감정 분석 결과</div>
         <div className="diary">

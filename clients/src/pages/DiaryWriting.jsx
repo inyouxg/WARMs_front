@@ -5,7 +5,7 @@ function DiaryWriting(){
   const maxLength = 1000;
 
   return (
-    <div className="background-container">
+    <div className="diary-background-container">
       <div className="diary-container">
         <div className="title">일기 작성하기</div>
         <textarea 

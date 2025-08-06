@@ -23,8 +23,8 @@ function EmotionModal({onClose}) {
     }
   };
   return(
-    <div className="modal-container">
-      <div className="modal-wrapper">
+    <div className="emotion-modal-container">
+      <div className="emotion-modal-wrapper">
         <img className="close-button" src={close} onClick={onClose}/>
         <div className="title">
           <img className="left-arrow" 
