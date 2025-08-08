@@ -1,24 +1,36 @@
 import { useState } from 'react';
+import { signUpAPI } from '../api/loginAPI';
 import close from '../assets/close.svg'
 import './LoginModal.css'
 
 function JoinModal({onClose}){
   const [rePassword,setRePassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [form,setForm] = useState({
     userId:"", 
     password:""
   });
 
   //회원가입 제출
-  const handleSubmit = async () => {
-    const result = await signUpAPI(form);
-    if(result.success){
-      alert("회원가입을 완료하였습니다.");
-      onClose();
-    }else{
-      alert(result.error);
-      console.log(result.error);
-      //에러 메세지 출력
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(loading) return;
+    setLoading(true);
+    try{
+      const result = await signUpAPI(form);
+      if(result.success){
+        alert("회원가입을 완료하였습니다.");
+        onClose();
+      }else{
+        alert(result.error || "회원가입에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        console.error(result.error || "회원가입에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        //에러 메세지 출력
+      }
+    }catch(err){
+      console.error(err);
+      alert("네트워크 오류가 발생했습니다. 다시 시도해 주세요.")
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -27,16 +39,19 @@ function JoinModal({onClose}){
     setForm({...form, [name] : value});
   };
 
-  const isFormValid =
+  const isFormValid = Boolean(
     form.userId.trim() &&
     form.password.trim() &&
     rePassword.trim() &&
-    (form.password === rePassword);
+    (form.password === rePassword)
+  );
 
     return(
     <div className="login-modal-container">
       <div className="login-modal-wrapper">
-        <img src={close} onClick={onClose}/>
+        <img src={close} 
+          onClick={onClose}
+          alt='닫기'/>
         <div className="title">회원가입</div>
         <form onSubmit={handleSubmit}>
           <div className='input-wrapper'>
@@ -71,7 +86,9 @@ function JoinModal({onClose}){
           </div>
           <button type="submit" 
             className='submit-button'
-            disabled={!isFormValid}>회원가입</button>
+            disabled={!isFormValid || loading}>
+          {loading ? "가입 중..." : "회원가입"}
+          </button>
         </form>
       </div>
     </div>
