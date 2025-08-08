@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Calendar from '../components/MyCalendar'
 import EmotionModal from "../modal/EmotionModal"
@@ -6,13 +6,24 @@ import StoryModal from "../modal/StoryModal"
 import emotion from '../assets/emotion.svg'
 import bookmark from '../assets/bookmark.svg'
 import today from '../assets/today.svg'
+import axiosInstance from '../api/axiosInstance'
 import './Home.css'
 
 function Home(){
   const [emotionModal,setEmotionModal] = useState(false);
   const [storyModal,setStoryModal] = useState(false);
+  const [data,setData] = useState([]);
 
   let navigate = useNavigate();
+
+  useEffect(() => {
+    axiosInstance.get("/")
+    .then((res) => {
+      setData(res.data);
+    }).catch((err) => {
+      console.error("메인 페이지 API 호출 실패", err);
+    })
+  }, []);
 
   const onClose = () => {
     setEmotionModal(false);
@@ -36,7 +47,7 @@ function Home(){
           <button onClick={() => navigate("/home/writing")}><img src={today} /></button>
         </div>
       </div>
-      <Calendar/>
+      <Calendar data={data}/>
     </div>
   )
 }

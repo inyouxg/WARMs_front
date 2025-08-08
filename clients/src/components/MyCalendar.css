@@ -66,6 +66,12 @@
   font-size: 13px;
   font-weight: bold;
   transition: all 0.2s ease-in-out;
+  position: relative;
+}
+.react-calendar__month-view__days img{
+  position: absolute;
+  right: 20px;
+  z-index: 9999;
 }
 
 .react-calendar__month-view__days button:hover {
