@@ -9,7 +9,6 @@ import './App.css'
 function App() {
   return (
     <>
-      <Header />
       <Routes>
         <Route path="/" element={<Title />} />
         <Route path="/home" element={<Home />}/>

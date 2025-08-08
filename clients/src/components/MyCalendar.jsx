@@ -10,6 +10,7 @@ function MyCalendar() {
 
   return (
     <div className="calendar-container">
+      <img src='../../images/logo.png' className="logo"/>
       <ReactCalendar
         onChange={setDate}
         value={date}

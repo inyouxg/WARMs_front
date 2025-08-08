@@ -8,9 +8,23 @@
   padding: 20px;
   width: 100%;
 }
+.calendar-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.calendar-container .logo {
+  position: absolute;
+  top: 1.5%;     /* 달력 맨 위 */
+  left: 3%;    /* 달력 맨 왼쪽 */
+  width: 120px;
+  height: auto;
+}
 
 .react-calendar__navigation{
-  margin-top: 30px;
+  margin-top: 40px;
+  margin-bottom: 35px;
 }
 
 .react-calendar__navigation button:disabled {

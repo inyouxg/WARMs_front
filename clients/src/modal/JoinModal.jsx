@@ -9,10 +9,19 @@ function JoinModal({onClose}){
     password:""
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // 새로고침 방지
-    console.log("회원가입 시도!");
+  //회원가입 제출
+  const handleSubmit = async () => {
+    const result = await signUpAPI(form);
+    if(result.success){
+      alert("회원가입을 완료하였습니다.");
+      onClose();
+    }else{
+      alert(result.error);
+      console.log(result.error);
+      //에러 메세지 출력
+    }
   }
+
   const handleChange = (e) => {
     const {name, value} = e.target;
     setForm({...form, [name] : value});
@@ -25,8 +34,8 @@ function JoinModal({onClose}){
     (form.password === rePassword);
 
     return(
-    <div className="modal-container">
-      <div className="modal-wrapper">
+    <div className="login-modal-container">
+      <div className="login-modal-wrapper">
         <img src={close} onClick={onClose}/>
         <div className="title">회원가입</div>
         <form onSubmit={handleSubmit}>

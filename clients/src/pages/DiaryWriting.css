@@ -18,11 +18,12 @@
   font-size: 30px;
   color: #412020;
   font-weight: 600;
-  margin-top: 45px;
+  margin-top: 65px;
+  margin-bottom: 20px;
 }
 .diary-container textarea{
   width: 100%;
-  height: 700px;
+  height: 640px;
   margin: 30px;
   padding: 31px;
   font-size: 22px;

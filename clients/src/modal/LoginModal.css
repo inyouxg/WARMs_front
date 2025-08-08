@@ -1,4 +1,4 @@
-.modal-container {
+.login-modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modal-wrapper {
+.login-modal-wrapper {
   position: relative;
   display: flex;
   background: white;
@@ -23,14 +23,14 @@
   flex-direction: column;
   gap: 12px;
 }
-.modal-wrapper .title {
+.login-modal-wrapper .title {
   font-size: 28px;
   color: #675346;
   font-weight: 600;
   text-align: center;
   padding-bottom: 15px;
 }
-.modal-wrapper img{
+.login-modal-wrapper img{
   position: absolute;
   right: 15px;
   top: 15px;
@@ -43,7 +43,7 @@
   margin-bottom: 10px;
   padding-left: 10px;
 }
-.modal-wrapper .submit-button{
+.login-modal-wrapper .submit-button{
   width: 100%;
   height: 39px;
   border-radius: 10px;
@@ -55,7 +55,7 @@
   font-size: 17px;
   font-weight: 600;
 }
-.modal-wrapper .join-button{
+.login-modal-wrapper .join-button{
   position: absolute;
   width: 40%;
   border: none;

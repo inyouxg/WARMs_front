@@ -7,18 +7,18 @@ function EmotionReport() {
   const today = diary[0].created_at.slice(0, 10).split("-");
 
   return(
-    <div className="emotion-background-container">
+    <div className="report-background-container">
       <div className="report-container">
         <div className="title">감정 분석 결과</div>
         <div className="diary">
           <div className='created-at'>
             {today[0]}년 {today[1]}월 {today[2]}일
           </div>
-          <div className='text'>
+          <div className='report-text'>
             {diary[0].text}
           </div>
         </div>
-        <div className="emotion-chart">
+        <div className="report-emotion-chart">
           <EmotionChart probabilities={diary[0].probabilities} />
           <div>
             {Object.entries(diary[0].probabilities).map(([emotion, percent]) => (

@@ -4,15 +4,24 @@ import close from '../assets/close.svg'
 import './LoginModal.css'
 
 function LoginModal({onClose}){
-  const handleSubmit = (e) => {
-    e.preventDefault(); // 새로고침 방지
-    console.log("로그인 시도!");
-  };
+  //서버에 로그인 요청
+  const handleSubmit = async () => {
+    const login = await loginAPI(userId, password);
+    if(login.success){
+      if(autoLogin) localStorage.setItem("autoLogin", "true");
+      else localStorage.removeItem("autoLogin");
+      alert("로그인 되었습니다.");
+      onLogin(login.user);
+      onClose();
+    }else {
+      alert("로그인에 실패 하였습니다. 다시 한 번 확인해 주세요.");
+    }
+  }
   const [joinModal, setJoinModal] = useState(false);
 
   return(
-    <div className="modal-container">
-      <div className="modal-wrapper">
+    <div className="login-modal-container">
+      <div className="login-modal-wrapper">
         <img src={close} onClick={onClose}/>
         <div className="title">로그인</div>
         <form onSubmit={handleSubmit}>
