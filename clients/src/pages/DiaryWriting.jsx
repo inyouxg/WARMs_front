@@ -1,8 +1,31 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axiosInstance from "../api/axiosInstance";
 import './DiaryWriting.css'
+
 function DiaryWriting(){
+  const navigate = useNavigate();
   const [content, setContent] = useState("");
+  const [data,setData] = useState([]);
   const maxLength = 1000;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const result = await writingAPI(content);
+      if(result.success){
+        console.log("일기 전송 완료");
+        setData(result.data);
+        navigate("/report", { state: { diary: result.data } });
+      }else{
+        alert(result.error || "일기 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        console.error(result.error || "일기 전송 실패.");
+      }
+    }catch(err){
+      console.error(err);
+      alert("네트워크 오류가 발생했습니다. 다시 시도해 주세요.");
+    }
+  }
 
   return (
     <div className="diary-background-container">
@@ -21,8 +44,8 @@ function DiaryWriting(){
               <span>{content.length} / {maxLength}</span>
             </div>
             <div className="diary-button"> 
-              <button>저장</button>
-              <button>종료</button>
+              <button onClick={handleSubmit}>저장</button>
+              <button onClick={() => navigate("/home")}>종료</button>
             </div>
           </div>
       </div>
