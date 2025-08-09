@@ -17,7 +17,7 @@ function Home(){
   let navigate = useNavigate();
 
   useEffect(() => {
-    axiosInstance.get("/")
+    axiosInstance.get("/diary/calendar")
     .then((res) => {
       setData(res.data);
     }).catch((err) => {

@@ -8,11 +8,14 @@ export const loginAPI = async (userId, password) => {
       { userId, password },
       { withCredentials: true }
     );
-    if (res.data && res.data.token && res.data.user) {
-      localStorage.setItem("accessToken", res.data.token);
-      localStorage.setItem("userId", res.data.user.id);
-    } 
-    return { success: true, user: res.data.user };
+    const { access_token, token, token_type, user } = res.data || {};
+    const t = access_token ?? token;
+    localStorage.setItem("token", t);
+    console.log(t);
+    if (token_type) {
+      localStorage.setItem("tokenType", token_type);
+    }
+    return { success: true, user: res.data.user ?? null };
   } catch (err) {
     return {
       success: false,

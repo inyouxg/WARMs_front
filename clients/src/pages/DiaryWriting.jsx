@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axiosInstance from "../api/axiosInstance";
+import { writingAPI } from "../api/postAPI";
 import './DiaryWriting.css'
 
 function DiaryWriting(){
