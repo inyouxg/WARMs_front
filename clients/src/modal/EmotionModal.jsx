@@ -1,19 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axiosInstance from '../api/axiosInstance'
 import close from '../assets/close.svg'
 import leftArrow from '../assets/leftArrow.svg'
 import rightArrow from '../assets/rightArrow.svg'
 import diary from '../mock/diary.json'
 import EmotionChart from "../components/EmotionChart"
+import happyImg from '../assets/happy.png'
 import './EmotionModal.css'
 
 function EmotionModal({onClose}) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    axiosInstance.get("/diary/statistics")
+    .then((res) => {
+      setData(res.data);
+    }).catch((err) => {
+      console.error("emotion chart 호출 실패", err);
+    })
+  }, []);
+  
+  const hasData = data.length > 0;
+  const current = hasData ? data[currentIndex] : null;
 
-  const currentDiary = diary[currentIndex];
-  const day = diary[currentIndex].created_at.slice(0, 10).split("-");
+  const day = current?.created_at?.slice(0, 10).split("-");
 
   const prevDiary = () => {
-    if (currentIndex < diary.length - 1) {
+    if (currentIndex < data.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
@@ -22,6 +36,19 @@ function EmotionModal({onClose}) {
       setCurrentIndex(currentIndex - 1);
     }
   };
+
+  if(!hasData){
+    return(
+      <div className="emotion-modal-container">
+        <div className="emotion-modal-wrapper">
+          <img className="close-button" src={close} onClick={onClose} />
+          <img src={happyImg} style={{width: "100%"}}/>
+          <div className="title">로딩 중…</div>
+        </div>
+      </div>
+    );
+  }
+
   return(
     <div className="emotion-modal-container">
       <div className="emotion-modal-wrapper">
@@ -37,12 +64,12 @@ function EmotionModal({onClose}) {
         </div>
         <div className='diary'>
           <div className='text'>
-            {diary[currentIndex].text}
+            {current?.text}
           </div>
           <div className="emotion-chart">
-            <EmotionChart probabilities={diary[currentIndex].probabilities} />
+            <EmotionChart probabilities={current?.probabilities} />
             <div className='emotion-percent'>
-              {Object.entries(diary[currentIndex].probabilities).map(([emotion, percent]) => (
+              {Object.entries(current.probabilities).map(([emotion, percent]) => (
                 <p key={emotion}>
                   {emotion} : {(percent * 100)}%
                 </p>

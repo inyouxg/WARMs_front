@@ -1,4 +1,4 @@
-.modal-container {
+.story-modal-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modal-wrapper {
+.story-modal-wrapper {
   position: relative;
   display: flex;
   background: #FFFCF0;
@@ -23,23 +23,23 @@
   flex-direction: column;
   gap: 12px;
 }
-.modal-wrapper .title {
+.story-modal-wrapper .title {
   font-size: 28px;
   color: #675346;
   font-weight: 600;
   text-align: center;
 }
-.modal-wrapper .close-button{
+.story-modal-wrapper .close-button{
   position: absolute;
   right: 15px;
   top: 15px;
 }
-.modal-wrapper .title .left-arrow {
+.story-modal-wrapper .title .left-arrow {
   position: absolute;
   left: 35%;
   top: 8.5%; 
 }
-.modal-wrapper .title .right-arrow {
+.story-modal-wrapper .title .right-arrow {
   position: absolute;
   right: 35%;
   top: 8.5%;
