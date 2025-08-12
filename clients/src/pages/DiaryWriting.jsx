@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { writingAPI } from "../api/postAPI";
 import './DiaryWriting.css'
 

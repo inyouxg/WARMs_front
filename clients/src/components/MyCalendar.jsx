@@ -8,7 +8,8 @@ import happyImg from '../assets/happy.png'
 import sadImg from '../assets/sad.png'
 import anxietyImg from '../assets/anxiety.png'
 import angryImg from '../assets/angry.png'
-import normalImg from '../assets/normal.png'
+import embarrassedImg from '../assets/embarrassed.png'
+import hurtImg from '../assets/hurt.png'
 
 function MyCalendar({data, onSelectDate}) {
   const [date, setDate] = useState(new Date());
@@ -19,16 +20,18 @@ function MyCalendar({data, onSelectDate}) {
       "슬픔": "sad",
       "분노": "angry",
       "불안": "anxiety",
-      "중립": "normal"
+      "당황": "embarrassed",
+      "상처": "hurt"
     }
-    return map[label] ?? "normal";
+    return map[label] ?? null;
   }
   const emotions = {
     happy : happyImg,
     sad : sadImg,
     anxiety : anxietyImg,
     angry : angryImg,
-    normal : normalImg
+    hurt : hurtImg,
+    embarrassed : embarrassedImg
   }
 
   const formatDate = (day) => 
@@ -58,17 +61,17 @@ function MyCalendar({data, onSelectDate}) {
         if (view !== "month") return null;
 
         const dateStr = formatDate(tileDate);
-        const emotionEntry = data.find((item) => formatDate(item.created_at) === dateStr);
+        const emotionLabel = data.find((item) => formatDate(item.created_at) === dateStr);
 
-        if (emotionEntry) {
-          const iconLabel = labelChange(emotionEntry.label);
+        if (emotionLabel) {
+          const iconLabel = labelChange(emotionLabel.label);
           const icon = emotions[iconLabel];
           if (icon) {
             return (
               <div>
                 <img
                   src={icon}
-                  alt={emotionEntry.label}
+                  alt={emotionLabel.label}
                   style={{ width: "110px", height: "110px" }}
                 />
               </div>
