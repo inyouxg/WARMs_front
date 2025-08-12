@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { loginAPI } from '../api/loginAPI'
 import JoinModal from './JoinModal';
 import close from '../assets/close.svg'
@@ -17,6 +17,20 @@ function LoginModal({onClose}){
     const {name, value} = e.target;
     setForm({...form, [name] : value});
   };
+
+  const onKeyDown = (e) => {
+    if(e.key === "Escape"){
+      e.preventDefault();
+      onClose();
+    }}
+  
+    useEffect(() => {
+      window.addEventListener("keydown", onKeyDown);
+      return () => {
+        window.removeEventListener("keydown", onKeyDown);
+      };
+    }, [onClose])
+  
 
   //서버에 로그인 요청
   const handleSubmit = async (e) => {

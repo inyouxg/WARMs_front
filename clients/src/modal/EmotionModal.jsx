@@ -11,6 +11,20 @@ import './EmotionModal.css'
 function EmotionModal({onClose}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);
+
+  const onKeyDown = (e) => {
+    if(e.key === "Escape"){
+      e.preventDefault();
+      onClose();
+    }}
+
+    useEffect(() => {
+      window.addEventListener("keydown", onKeyDown);
+      return () => {
+        window.removeEventListener("keydown", onKeyDown);
+      };
+    }, [onClose])
+
   
   useEffect(() => {
     axiosInstance.get("/diary/statistics")

@@ -11,6 +11,19 @@ import "./StoryModal.css"
 function StoryModal({onClose}){
   const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);
+  
+  const onKeyDown = (e) => {
+    if(e.key === "Escape"){
+      e.preventDefault();
+      onClose();
+    }}
+
+    useEffect(() => {
+      window.addEventListener("keydown", onKeyDown);
+      return () => {
+        window.removeEventListener("keydown", onKeyDown);
+      };
+    }, [onClose])
 
   useEffect(() => {
     axiosInstance.get("").
@@ -25,12 +38,6 @@ function StoryModal({onClose}){
   const current = hasData ? data[currentIndex] : null;
   const day = current?.created_at?.slice(0, 10).split("-");
 
-  onkeydown = (e) => {
-    if(e.key === "Escape"){
-      e.preventDefault();
-      onClose();
-    }
-  }
 
   if(!hasData){
     return(
