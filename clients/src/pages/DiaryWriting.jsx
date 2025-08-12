@@ -1,18 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { writingAPI } from "../api/postAPI";
 import './DiaryWriting.css'
 
 function DiaryWriting(){
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [content, setContent] = useState("");
   const [data,setData] = useState([]);
   const maxLength = 1000;
 
+  const selectedDateStr = location.state?.date || new Date().toLocaleDateString("en-CA");
+  const createdAtISO = new Date(selectedDateStr).toISOString();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const result = await writingAPI(content);
+      const result = await writingAPI(content, createdAtISO);
       if(result.success){
         console.log("일기 전송 완료");
         setData(result.data);

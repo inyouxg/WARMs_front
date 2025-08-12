@@ -13,6 +13,7 @@ function Home(){
   const [emotionModal,setEmotionModal] = useState(false);
   const [storyModal,setStoryModal] = useState(false);
   const [data,setData] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString("en-CA"));
 
   let navigate = useNavigate();
 
@@ -44,10 +45,10 @@ function Home(){
           {storyModal &&
             <StoryModal onClose={onClose}/>}
           <span>일기 쓰러 가기!</span>
-          <button onClick={() => navigate("/home/writing")}><img src={today} /></button>
+          <button onClick={() => navigate("/home/writing", {state: {date: selectedDate}})}><img src={today} /></button>
         </div>
       </div>
-      <Calendar data={data}/>
+      <Calendar data={data} onSelectDate={setSelectedDate}/>
     </div>
   )
 }

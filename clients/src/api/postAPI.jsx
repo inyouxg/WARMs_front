@@ -1,9 +1,10 @@
 import axiosInstance from "./axiosInstance";
 
-export const writingAPI = async (content) => {
+export const writingAPI = async (content, createdAtISO) => {
   try {
     const res = await axiosInstance.post("/diary/save", {
       text: content,
+      created_at: createdAtISO,
     });
     return { 
       success: true,

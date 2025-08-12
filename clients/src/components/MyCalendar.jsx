@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactCalendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; // 기본 스타일
+import "react-calendar/dist/Calendar.css";
 import "./MyCalendar.css"
 import leftArrow from '../assets/leftArrow.svg'
 import rightArrow from '../assets/rightArrow.svg'
@@ -10,15 +10,19 @@ import anxietyImg from '../assets/anxiety.png'
 import angryImg from '../assets/angry.png'
 import normalImg from '../assets/normal.png'
 
-function MyCalendar({data}) {
+function MyCalendar({data, onSelectDate}) {
   const [date, setDate] = useState(new Date());
 
-  const mockData = [
-  { date: "2025-08-09", emotion: "happy" },
-  { date: "2025-08-15", emotion: "sad" },
-  { date: "2025-08-22", emotion: "angry" },
-];
-
+  const labelChange = (label) => {
+    const map = {
+      "기쁨": "happy",
+      "슬픔": "sad",
+      "분노": "angry",
+      "불안": "anxiety",
+      "중립": "normal"
+    }
+    return map[label] ?? "normal";
+  }
   const emotions = {
     happy : happyImg,
     sad : sadImg,
@@ -27,7 +31,10 @@ function MyCalendar({data}) {
     normal : normalImg
   }
 
-  const formatDate = (day) => day.toISOString().split("T")[0];
+  const formatDate = (day) => 
+  (typeof day === "string" && day.length >= 10)
+    ? day.slice(0, 10)
+    : new Date(day).toLocaleDateString("en-CA");
 
   return (
     <div className="calendar-container">
@@ -39,24 +46,29 @@ function MyCalendar({data}) {
         minDetail="month"
         formatDay={(locale, date) => date.getDate()}
         navigationLabel={({date, label}) => <span>{label}</span> }
-        prevLabel= {<img src={leftArrow}/>}
-        nextLabel={<img src={rightArrow}/>}
+        prevLabel= {<img src={leftArrow} alt="prev"/>}
+        nextLabel={<img src={rightArrow} alt="next"/>}
         prev2Label={null}
         next2Label={null}
-        tileContent={({ date, view }) => {
+        onClickDay={(value) => {
+          setDate(value);
+          onSelectDate?.(formatDate(value));
+        }}
+        tileContent={({ date : tileDate, view }) => {
         if (view !== "month") return null;
 
-        const dateStr = formatDate(date);
-        const emotionEntry = mockData.find((item) => item.date === dateStr);
+        const dateStr = formatDate(tileDate);
+        const emotionEntry = data.find((item) => formatDate(item.created_at) === dateStr);
 
         if (emotionEntry) {
-          const icon = emotions[emotionEntry.emotion];
+          const iconLabel = labelChange(emotionEntry.label);
+          const icon = emotions[iconLabel];
           if (icon) {
             return (
-              <div style={{ }}>
+              <div>
                 <img
                   src={icon}
-                  alt={emotionEntry.emotion}
+                  alt={emotionEntry.label}
                   style={{ width: "110px", height: "110px" }}
                 />
               </div>
