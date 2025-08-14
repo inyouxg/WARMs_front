@@ -16,7 +16,7 @@ function EmotionReport() {
   const timerRef = useRef(null);
 
   const diary = location.state?.diary || mock[0];// 일기 데이터 꺼내기, 데이터 없으면 mock으로 대체
-  console.log(diary?.id); //id 있는지 확인하기..
+  console.log(diary); // 오류 감지용 데이터 확인
   const today = diary?.created_at?.slice(0, 10)?.split("-");
 
   useEffect(() => {

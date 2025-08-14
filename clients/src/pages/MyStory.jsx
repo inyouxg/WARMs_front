@@ -2,8 +2,8 @@ import { useLocation } from 'react-router-dom'
 import mock from '../mock/fairyTale.json'
 function MyStory() {
   const location = useLocation();
-
   const story = location.state?.diary || mock[0];
+  console.log(story);
   return (
     <div className="report-background-container">
           <div className="report-container">

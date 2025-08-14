@@ -25,11 +25,11 @@ function EmotionModal({onClose}) {
       };
     }, [onClose])
 
-  
   useEffect(() => {
     axiosInstance.get("/diary/statistics")
     .then((res) => {
       setData(res.data);
+      console.log("응답 데이터 :", res.data);
     }).catch((err) => {
       console.error("emotion chart 호출 실패", err);
     })

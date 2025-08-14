@@ -29,6 +29,7 @@ function StoryModal({onClose}){
     axiosInstance.get("").
     then((res) => {
       setData(res.data);
+      console.log("응답 데이터 :", res.data);
     }).catch((err) => {
       console.error("동화 차트 호출 실패", err);
     })
