@@ -5,6 +5,7 @@ import EmotionChart from "../components/EmotionChart"
 import {storyAPI} from '../api/postAPI'
 import LoadingModal from '../modal/LoadingModal';
 import mock from '../mock/diary.json'
+import home from '../assets/home.svg'
 import './EmotionReport.css'
 
 function EmotionReport() {
@@ -93,6 +94,10 @@ function EmotionReport() {
         </div>
         <p className='footer-text'>세상에 단 하나뿐인 너의 동화를 만들어봐!</p>
         <button onClick={handleSubmit}>내 동화 쓰러가기</button>
+      </div>
+      <div className='right-button'>
+        <span>메인화면 가기</span>
+        <button onClick={() => navigate("/home")}><img src={home}/></button>
       </div>
       <LoadingModal open={modalOpen} progress={progress} />
     </div>
