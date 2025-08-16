@@ -105,6 +105,25 @@
   color: #333;
   text-align: center;
 }
+
+.lesson-wrapper{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.lesson-wrapper > img{
+  width: 60px;
+  height: auto;
+}
+.lesson-wrapper > span{
+  font-family: "Poor Story";
+  font-size: 22px;
+  color: #412020;
+  margin-left: 10px;
+  white-space: pre-line;
+}
+
 .right-button{
   display: flex;
   flex-direction: column;

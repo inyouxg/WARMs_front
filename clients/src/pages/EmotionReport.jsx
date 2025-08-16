@@ -1,4 +1,3 @@
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import EmotionChart from "../components/EmotionChart"
@@ -47,7 +46,7 @@ function EmotionReport() {
         await new Promise(r => setTimeout(r, 250));
         console.log("동화 생성 POST");
         setStory(result.data); // imageUrl, text, id, created_at 응답해줌
-        navigate("home/writing/report/story", { state: { story: result.data } })
+        navigate("/home/writing/report/story", { state: { story: result.data } })
       }else{
         setProgress(100);
         await new Promise(r => setTimeout(r, 250));
@@ -82,10 +81,10 @@ function EmotionReport() {
         <div className="report-emotion-chart">
           <EmotionChart probabilities={
             Object.fromEntries(
-            diary?.fine_topk.map(({ label, score }) => [label, score])
+            diary?.fine_topk?.map(({ label, score }) => [label, score])
           )} />
           <div>
-            {diary?.fine_topk.map(({label, score}) => (
+            {diary?.fine_topk?.map(({label, score}) => (
               <p key={label}>
                 {label} : {(score * 100).toFixed(1)}%
               </p>

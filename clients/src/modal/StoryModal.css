@@ -80,6 +80,7 @@
   position: static;
   max-width: 90%;
   max-height: 300px;
+  border-radius: 30px;
   object-fit: contain; /* 비율 유지하며 축소 */
   margin: 0 auto;
 }

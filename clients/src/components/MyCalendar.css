@@ -88,3 +88,9 @@
   background: rgba(255, 150, 150, 0.3) !important;
   border: 2px solid #ff8080 !important;
 }
+.react-calendar__navigation__prev-button{
+  padding-top: 20px ;
+}
+.react-calendar__navigation__next-button{
+  padding-top: 17px ;
+} /*window 기준 css*/

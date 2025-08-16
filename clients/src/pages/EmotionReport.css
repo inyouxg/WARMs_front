@@ -23,6 +23,7 @@
   color: white;
   border-radius: 20px;
   padding-top: 4px;
+  padding-bottom: 6px; /*window 기준 css*/
   margin-bottom: 40px;
 }
 
