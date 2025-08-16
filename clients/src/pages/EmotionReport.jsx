@@ -86,7 +86,7 @@ function EmotionReport() {
           <div>
             {diary?.fine_topk.map(({label, score}) => (
               <p key={label}>
-                {label} : {(score * 100)}%
+                {label} : {(score * 100).toFixed(1)}%
               </p>
             ))}
           </div>

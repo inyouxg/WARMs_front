@@ -18,12 +18,12 @@ function EmotionModal({onClose}) {
       onClose();
     }}
 
-    useEffect(() => {
-      window.addEventListener("keydown", onKeyDown);
-      return () => {
-        window.removeEventListener("keydown", onKeyDown);
-      };
-    }, [onClose])
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose])
 
   useEffect(() => {
     axiosInstance.get("/diary/statistics")

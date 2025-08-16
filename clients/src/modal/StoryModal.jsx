@@ -18,12 +18,12 @@ function StoryModal({onClose}){
       onClose();
     }}
 
-    useEffect(() => {
-      window.addEventListener("keydown", onKeyDown);
-      return () => {
-        window.removeEventListener("keydown", onKeyDown);
-      };
-    }, [onClose])
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose])
 
   useEffect(() => {
     axiosInstance.get("").
@@ -35,7 +35,7 @@ function StoryModal({onClose}){
     })
   }, [])
 
-  const hasData = data.length > 0;
+  const hasData = Array.isArray(data) && data.length > 0;
   const current = hasData ? data[currentIndex] : null;
   const day = current?.created_at?.slice(0, 10).split("-");
 

@@ -50,6 +50,7 @@
   align-items: center;
   width: 100%;
   max-width: 700px;
+  height: auto;
   margin: 40px auto;
   background: #fffdf5;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
