@@ -38,12 +38,12 @@ function Home(){
           <button onClick={() => setEmotionModal(true)}><img src={emotion}/></button>
           {emotionModal &&
             <EmotionModal onClose={onClose}/>}
-        </div>
-        <div className='right-button'>
           <span>동화 모아보기!</span>
           <button onClick={() => setStoryModal(true)}><img src={bookmark}/></button>
           {storyModal &&
             <StoryModal onClose={onClose}/>}
+        </div>
+        <div className='right-button'>
           <span>일기 쓰러 가기!</span>
           <button onClick={() => navigate("/home/writing", {state: {date: selectedDate}})}><img src={today} /></button>
         </div>

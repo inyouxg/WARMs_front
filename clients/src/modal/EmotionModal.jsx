@@ -26,7 +26,7 @@ function EmotionModal({onClose}) {
   }, [onClose])
 
   useEffect(() => {
-    axiosInstance.get("/diary/statistics")
+    axiosInstance.get("/diary/history")
     .then((res) => {
       const result = Array.isArray(res.data) ? res.data : [res.data];
       setData(result);
@@ -42,12 +42,12 @@ function EmotionModal({onClose}) {
   const day = current?.created_at?.slice(0, 10).split("-");
   const list = current?.fine_topk ?? [];
 
-  const prevDiary = () => {
+  const nextDiary = () => {
     if (currentIndex < data.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
-  const nextDiary = () => {
+  const prevDiary = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }

@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { writingAPI } from "../api/postAPI";
+import home from '../assets/home.svg'
 import './DiaryWriting.css'
 
 function DiaryWriting(){
@@ -52,6 +53,10 @@ function DiaryWriting(){
               <button onClick={handleSubmit}>저장</button>
               <button onClick={() => navigate("/home")}>종료</button>
             </div>
+          </div>
+          <div className='right-button'>
+            <span>메인화면 가기</span>
+            <button onClick={() => navigate("/home")}><img src={home}/></button>
           </div>
       </div>
     </div>

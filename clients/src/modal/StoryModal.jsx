@@ -52,12 +52,12 @@ function StoryModal({onClose}){
     );
   }
 
-  const prevDiary = () => {
+  const nextDiary = () => {
     if (currentIndex < data.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   };
-  const nextDiary = () => {
+  const prevDiary = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
