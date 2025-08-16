@@ -21,7 +21,7 @@ function DiaryWriting(){
       if(result.success){
         console.log("일기 전송 완료");
         setData(result.data);
-        navigate("home/writing/report", { state: { diary: result.data } });
+        navigate("report", { state: { diary: result.data } });
       }else{
         alert(result.error || "일기 전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
         console.error(result.error || "일기 전송 실패.");

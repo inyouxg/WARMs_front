@@ -79,11 +79,14 @@ function EmotionReport() {
           </div>
         </div>
         <div className="report-emotion-chart">
-          <EmotionChart probabilities={diary?.probabilities} />
+          <EmotionChart probabilities={
+            Object.fromEntries(
+            diary?.fine_topk.map(({ label, score }) => [label, score])
+          )} />
           <div>
-            {Object.entries(diary?.probabilities).map(([emotion, percent]) => (
-              <p key={emotion}>
-                {emotion} : {(percent * 100)}%
+            {diary?.fine_topk.map(({label, score}) => (
+              <p key={label}>
+                {label} : {(score * 100)}%
               </p>
             ))}
           </div>

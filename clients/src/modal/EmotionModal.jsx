@@ -28,17 +28,19 @@ function EmotionModal({onClose}) {
   useEffect(() => {
     axiosInstance.get("/diary/statistics")
     .then((res) => {
-      setData(res.data);
+      const result = Array.isArray(res.data) ? res.data : [res.data];
+      setData(result);
       console.log("응답 데이터 :", res.data);
     }).catch((err) => {
       console.error("emotion chart 호출 실패", err);
     })
   }, []);
   
-  const hasData = data.length > 0;
+  const hasData = Array.isArray(data) && data.length > 0;
   const current = hasData ? data[currentIndex] : null;
 
   const day = current?.created_at?.slice(0, 10).split("-");
+  const list = current?.fine_topk ?? [];
 
   const prevDiary = () => {
     if (currentIndex < data.length - 1) {
@@ -68,7 +70,7 @@ function EmotionModal({onClose}) {
       <div className="emotion-modal-wrapper">
         <img className="close-button" src={close} onClick={onClose}/>
         <div className="title">
-          <img className="left-arrow" 
+          <img className="left-arrow"
             onClick={prevDiary}
             src={leftArrow}/>
             {day[0]}년 {day[1]}월 {day[2]}일
@@ -81,11 +83,13 @@ function EmotionModal({onClose}) {
             {current?.text}
           </div>
           <div className="emotion-chart">
-            <EmotionChart probabilities={current?.probabilities} />
+            <EmotionChart probabilities={Object.fromEntries(
+              list.map(({ label, score }) => [label, Number(score)])
+            )} />
             <div className='emotion-percent'>
-              {Object.entries(current.probabilities).map(([emotion, percent]) => (
-                <p key={emotion}>
-                  {emotion} : {(percent * 100)}%
+              {list.map(({ label, score }, i) => (
+                <p key={`${current?.id ?? 'cur'}-${label}-${i}`}>
+                  {label} : {(Number(score) * 100).toFixed(1)}%
                 </p>
               ))}
             </div>

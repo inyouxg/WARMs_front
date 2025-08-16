@@ -2,7 +2,6 @@
   {
     "mock": "mock data",
     "id": "1",
-    "userId": "hamster",
     "text": "오늘 나는 햄버거를 잔뜩 먹엇다. 너무 배불럿다. 내일은 다섯개만 먹어야지.",
     "imageUrl": "/public/images/neoguri.jpeg",
     "created_at": "2025-08-02T21:45:30.123Z"
@@ -10,7 +9,6 @@
   {
     "mock": "mock data",
     "id": "2",
-    "userId": "hamster",
     "text": "오늘 나는 햄버거를 잔뜩 먹엇다. 너무 배불럿다. 내일은 열다섯개만 먹어야지. 구라다. 오백개 먹을거다. 너무 배고플 거 같다.",
     "imageUrl": "/public/images/neoguri.jpeg",
     "created_at": "2025-08-01T21:45:30.123Z"
