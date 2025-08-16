@@ -7,6 +7,8 @@ function MyStory() {
   const navigate = useNavigate();
   const location = useLocation();
   const story = location.state?.story || mock[0];
+
+  const storyText = story?.text?.split("교훈")[0];
   console.log(story);
   return (
     <div className="my-story-background-container">
@@ -14,9 +16,9 @@ function MyStory() {
         <div className="title">오늘의 동화</div>
         <div className="diary">
               <div className="my-sketchbook">
-                <img className='my-story-img' src={story.imageUrl} alt="story-img"/>
+                <img className='my-story-img' src={story.image_url} alt="story-img"/>
                 <div className='my-story-text'>
-                  {story.text}
+                  {storyText}
                 </div> 
               </div>
         </div>

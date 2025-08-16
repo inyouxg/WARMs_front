@@ -18,9 +18,9 @@ export const writingAPI = async (content, createdAtISO) => {
   }
 };
 
-export const storyAPI = async (diaryId) => {
+export const storyAPI = async (diary_Id) => {
   try {
-    const res = await axiosInstance.post(`/diary/${diaryId}/story`);
+    const res = await axiosInstance.post(`/diary/${diary_Id}/story`);
     return { 
       success: true, 
       data: res.data };
